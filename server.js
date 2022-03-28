@@ -17,8 +17,8 @@ if (process.env.NODE_ENV === "production") {
   // express.static delivers static files(html,css). When we want to use build we want to serve this files in the build folder
   app.use(express.static("client/build"));
   // if client makes request we want to send idex.html frist, which in  reality is all the react app
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  app.get("/*", (req, res) =>
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
   );
 }
 
