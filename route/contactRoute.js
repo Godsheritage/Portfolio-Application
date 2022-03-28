@@ -1,8 +1,5 @@
-
-const router = require('express').Router();
-const nodemailer = require('nodemailer');
-
-
+const router = require("express").Router();
+const nodemailer = require("nodemailer");
 
 // nodemailer is a module created in  node.js and has benn created in order to send mails
 
@@ -16,39 +13,47 @@ const nodemailer = require('nodemailer');
 
 // 3.deliver a message with sendmail
 
+router.post("/contact", (req, res) => {
+  let data = req.body;
 
-router.post('/contact', (req, res)=>{
-    let data = req.body;
+  // if the fields are empty we want to appear a message
+  if (
+    data.name.length === 0 ||
+    data.email.length === 0 ||
+    data.message.length === 0
+  ) {
+    return res.json({ msg: "Please fill all the required fields" });
+  }
 
-    // if the fields are empty we want to appear a message
-    if(data.name.length===0 || data.email.length===0 || data.message.length===0){
-      
-     return res.json({msg:"Please fill all the fields"})
+  //   we create a transporter
+//   let smtpTransport = nodemailer.createTransport({
+//     service: "Gmail",
+//     // the connect port
+//     port: 465,
 
+//     // authenticate
+//     auth: {
+//       user: "mojolaopadiran@gmail.com",
+//       pass: "graceofgod",
+//     },
+//   });
+
+let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+        user: "mojolaopadiran@gmail.com", // generated ethereal user
+        pass: "graceofgod" // generated ethereal password
     }
+});
 
-
-//   we create a transporter
-let smtpTransport = nodemailer.createTransport({
-
-    service:'Gmail',
-    // the connect port
-    port:465,
-
-    // authenticate
-    auth:{
-        user:'hightagetweb@gmail.com',
-        pass:'graceofgod'
-    }
-})
-
-
-// define the mailoptions
-let mailOptions = {
-    from:data.email,
-    to:'hightagetweb@gmail.com',
-    subject:`Message from ${data.name}`,
-    html:`
+  // define the mailoptions
+  let mailOptions = {
+    from: data.email,
+    to: "hightagetweb@gmail.com",
+    subject: `Message from ${data.name}`,
+    html: `
     
     <h3>Informations</h3>
     <ul>
@@ -61,30 +66,20 @@ let mailOptions = {
     <p>${data.message}</p>
     
     
-    `
-}
+    `,
+  };
 
+  // 3.send the message with sendmail
+  smtpTransport.sendMail(mailOptions, (err) => {
+    try {
+      if (err)
+        return res.status(400).json({ msg: "Please fill all the required fields" });
 
-// 3.send the message with sendmail
-smtpTransport.sendMail(mailOptions, (err)=>{
+      res.status(200).json({ msg: "Thank you for contacting Godsheritage!" });
+    } catch (err) {
+      if (err) return res.status(500).json({ msg: "There is server error" });
+    }
+  });
+});
 
-try {
-    
-if(err) return res.status(400).json({msg:'Please fill all the fields'})
-
-res.status(200).json({msg:'Thank you for contacting Godsheritage!'})
-
-
-} catch (err) {
-    if(err) return res.status(500).json({msg:'There is server error'})
-}
-
-})
-
-
-
-})
-
-
-
-module.exports=router;
+module.exports = router;
