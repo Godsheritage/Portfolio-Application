@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const nodemailer = require("nodemailer");
 
-// nodemailer is a module created in  node.js and has benn created in order to send mails
+// nodemailer is a module created in  node.js and has been created in order to send mails
 
 // in order to send mails you have to follow 3 steps:
 // 1.Create nodemailer transporter
@@ -24,34 +24,22 @@ router.post("/contact", (req, res) => {
   ) {
     return res.json({ msg: "Please fill all the required fields" });
   }
-
   //   we create a transporter
-//   let smtpTransport = nodemailer.createTransport({
-//     service: "Gmail",
-//     // the connect port
-//     port: 465,
 
-//     // authenticate
-//     auth: {
-//       user: "mojolaopadiran@gmail.com",
-//       pass: "graceofgod",
-//     },
-//   });
-
-let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-        user: "mojolaopadiran@gmail.com", // generated ethereal user
-        pass: "graceofgod" // generated ethereal password
-    }
-});
+      user: "mojolaopadiran@gmail.com", // generated ethereal user
+      pass: "graceofgod", // generated ethereal password
+    },
+  });
 
   // define the mailoptions
   let mailOptions = {
     from: data.email,
-    to: "hightagetweb@gmail.com",
+    to: "adeoyegodsheritage@gmail.com.com",
     subject: `Message from ${data.name}`,
     html: `
     
@@ -70,12 +58,14 @@ let transporter = nodemailer.createTransport({
   };
 
   // 3.send the message with sendmail
-  smtpTransport.sendMail(mailOptions, (err) => {
+  transporter.sendMail(mailOptions, (err) => {
     try {
       if (err)
-        return res.status(400).json({ msg: "Please fill all the required fields" });
-
-      res.status(200).json({ msg: "Thank you for contacting Godsheritage!" });
+        return res
+          .status(400)
+          .json({ msg: "Please fill all the required fields" });
+          
+      res.status(200).json({ msg: "Thank you for contacting me, i'd get back shortly!" });
     } catch (err) {
       if (err) return res.status(500).json({ msg: "There is server error" });
     }
