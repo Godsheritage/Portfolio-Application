@@ -4,7 +4,8 @@
   "description": "this is a portfolio website, created by Godsheritage",
   "main": "index.js",
   "engines" : {
-    "node": "16.x"
+    "node": "16.x",
+    "npm":"6.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
