@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import ScreenHeading from "../../utilities/ScreenHeading/ScreenHeading";
-import ScrollService from '../../utilities/ScrollService';
-import Animations from '../../utilities/Animations';
 import "./Resume.css";
+import React, { useState, useEffect } from "react";
+import Animations from "../../utilities/Animations";
+import ScrollService from "../../utilities/ScrollService";
+import ScreenHeading from "../../utilities/ScreenHeading/ScreenHeading";
 
 const Resume = (props) => {
   /* STATES */
@@ -10,12 +10,12 @@ const Resume = (props) => {
   const [carousalOffsetStyle, setCarousalOffsetStyle] = useState({});
 
   let fadeInScreenHandler = (screen) => {
-    if(screen.fadeInScreen !== props.id)
-      return;
+    if (screen.fadeInScreen !== props.id) return;
 
     Animations.animations.fadeInScreen(props.id);
   };
-  const fadeInSubscription = ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
+  const fadeInSubscription =
+    ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
 
   /* REUSABLE MINOR COMPONENTS */
   const ResumeHeading = (props) => {
@@ -24,13 +24,13 @@ const Resume = (props) => {
         <div className="resume-main-heading">
           <div className="heading-bullet"></div>
           <span>{props.heading ? props.heading : ""}</span>
-          {props.fromDate && props.toDate ? (
+          {/* {props.fromDate && props.toDate ? (
             <div className="heading-date">
               {props.fromDate + "-" + props.toDate}
             </div>
           ) : (
             <div></div>
-          )}
+          )} */}
         </div>
         <div className="resume-sub-heading">
           <span>{props.subHeading ? props.subHeading : ""}</span>
@@ -52,17 +52,15 @@ const Resume = (props) => {
   ];
 
   const programmingSkillsDetails = [
-
     { skill: "JavaScript" },
     { skill: "React JS" },
-    { skill: "Angular JS" },
-    { skill: "Vue JS" },
+    { skill: "Express JS" },
     { skill: "TypeScript" },
-    { skill: "Express JS"},
     { skill: "Node JS" },
+    { skill: "Express JS" },
     { skill: "Mongo Db" },
     { skill: "Rest API" },
-    { skill: "Sass" },
+    { skill: "Docker" },
     { skill: "HTML" },
     { skill: "CSS" },
   ];
@@ -73,14 +71,16 @@ const Resume = (props) => {
       duration: { fromDate: "2020", toDate: "2022" },
       description:
         "A Personal Portfolio website to showcase all my details and projects at one place.",
-      subHeading: "Technologies Used: React JS, Node JS, Express JS, Bootstrap",
+      subHeading:
+        "Technologies Used: React JS, Node JS, Express JS, Nodemailer, Bootstrap",
     },
     {
       title: "House Marketplace ",
       duration: { fromDate: "2020", toDate: "2021" },
       description:
         "A full stack application that allows users to listhouses for sale alongside their offers",
-      subHeading: "Technologies Used:  React, Mongo DB, Express Js, Node Js, Redux, Tailwind CSS.",
+      subHeading:
+        "Technologies Used:  React, Mongo DB, Express Js, Node Js, Redux, Tailwind CSS.",
     },
     {
       title: "Ecommerce Website ",
@@ -88,9 +88,8 @@ const Resume = (props) => {
       description:
         "Online ecommerce website for showcasing and selling shoes onlne.",
       subHeading:
-        "Technologies Used: Mongo DB, Epress Js, React Js, Node JS, Redux, Bootstrap, SASS.",
+        "Technologies Used: Mongo DB, Epress Js, React Js, Node JS, Bootstrap, SASS.",
     },
-    
   ];
 
   const resumeDetails = [
@@ -126,13 +125,14 @@ const Resume = (props) => {
         />
         <div className="experience-description">
           <span className="resume-description-text">
-          I am currently working as a full stack engineer at femtech IT Consultants.
+            I am currently working as a full stack engineer at femtech IT
+            Consultants.
           </span>
         </div>
         <div className="experience-description">
           <span className="resume-description-text">
-            - I Developed an ecommerce website for client with the dashboard for managing the products, managing reviews, users, payment etc.
-          .
+            - I Developed an ecommerce website for client with the dashboard for
+            managing the products, managing reviews, users, payment etc. .
           </span>
           <br />
           <span className="resume-description-text">
@@ -141,7 +141,8 @@ const Resume = (props) => {
           </span>
           <br />
           <span className="resume-description-text">
-            - I translated designs and wireframes into high quality code using JavaScript frameworks like React JS and Vue JS.
+            - I translated designs and wireframes into high quality code using
+            JavaScript frameworks like React JS and Vue JS.
           </span>
           <br />
         </div>
@@ -173,8 +174,8 @@ const Resume = (props) => {
           heading={projectsDetails.title}
           subHeading={projectsDetails.subHeading}
           description={projectsDetails.description}
-          fromDate={projectsDetails.duration.fromDate}
-          toDate={projectsDetails.duration.toDate}
+          // fromDate={projectsDetails.duration.fromDate}
+          // toDate={projectsDetails.duration.toDate}
         />
       ))}
     </div>,
@@ -238,9 +239,9 @@ const Resume = (props) => {
 
   useEffect(() => {
     return () => {
-        /* UNSUBSCRIBE THE SUBSCRIPTIONS */
-        fadeInSubscription.unsubscribe();
-    }
+      /* UNSUBSCRIBE THE SUBSCRIPTIONS */
+      fadeInSubscription.unsubscribe();
+    };
   }, [fadeInSubscription]);
 
   return (

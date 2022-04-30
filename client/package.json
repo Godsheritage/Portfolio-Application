@@ -1,7 +1,7 @@
 {
-  "name": "godsheritage",
+  "name": "godsheritage adeoye portfolio application",
   "proxy": "http://localhost:5000",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

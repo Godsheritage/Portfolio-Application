@@ -1,7 +1,7 @@
-import React from 'react'
 import './Footer.css'
-import { faFacebook, faLinkedin, faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faLinkedin, faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 const Footer = () => {
     /* SOCIALS STATIC DATA */
