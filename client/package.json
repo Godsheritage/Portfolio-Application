@@ -13,6 +13,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
+    "framer-motion": "^4.1.17",
     "react": "^16.13.1",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^16.13.1",
@@ -44,5 +45,4 @@
       "last 1 safari version"
     ]
   }
-  }
-
+}
