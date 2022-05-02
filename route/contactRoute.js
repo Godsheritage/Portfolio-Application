@@ -36,7 +36,6 @@ router.post("/contact", (req, res) => {
     },
   });
 
-  // constant === Constant
 
   // define the mailoptions
   let mailOptions = {
