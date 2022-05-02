@@ -36,10 +36,12 @@ router.post("/contact", (req, res) => {
     },
   });
 
+  // constant === Constant
+
   // define the mailoptions
   let mailOptions = {
     from: data.email,
-    to: "adeoyegodsheritage@gmail.com.com",
+    to: "adeoyegodsheritage@gmail.com",
     subject: `Message from ${data.name}`,
     html: `
     
